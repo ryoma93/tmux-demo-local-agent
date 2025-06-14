@@ -1,0 +1,278 @@
+{
+  "type": "flex",
+  "altText": "Product Information",
+  "contents": {
+    "type": "bubble",
+    "hero": {
+      "type": "image",
+      "url": "https://example.com/product-image.jpg",
+      "size": "full",
+      "aspectRatio": "20:13",
+      "aspectMode": "cover",
+      "action": {
+        "type": "uri",
+        "uri": "https://example.com/product/123"
+      }
+    },
+    "body": {
+      "type": "box",
+      "layout": "vertical",
+      "contents": [
+        {
+          "type": "text",
+          "text": "Premium Wireless Headphones",
+          "weight": "bold",
+          "size": "xl",
+          "margin": "md"
+        },
+        {
+          "type": "text",
+          "text": "Model: WH-1000XM5",
+          "size": "xs",
+          "color": "#aaaaaa",
+          "margin": "sm"
+        },
+        {
+          "type": "box",
+          "layout": "vertical",
+          "margin": "lg",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "box",
+              "layout": "baseline",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "Price",
+                  "color": "#aaaaaa",
+                  "size": "sm",
+                  "flex": 1
+                },
+                {
+                  "type": "text",
+                  "text": "$399.99",
+                  "wrap": true,
+                  "color": "#666666",
+                  "size": "sm",
+                  "flex": 5
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "baseline",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "Rating",
+                  "color": "#aaaaaa",
+                  "size": "sm",
+                  "flex": 1
+                },
+                {
+                  "type": "box",
+                  "layout": "baseline",
+                  "contents": [
+                    {
+                      "type": "icon",
+                      "size": "sm",
+                      "url": "https://example.com/star-filled.png"
+                    },
+                    {
+                      "type": "icon",
+                      "size": "sm",
+                      "url": "https://example.com/star-filled.png"
+                    },
+                    {
+                      "type": "icon",
+                      "size": "sm",
+                      "url": "https://example.com/star-filled.png"
+                    },
+                    {
+                      "type": "icon",
+                      "size": "sm",
+                      "url": "https://example.com/star-filled.png"
+                    },
+                    {
+                      "type": "icon",
+                      "size": "sm",
+                      "url": "https://example.com/star-half.png"
+                    },
+                    {
+                      "type": "text",
+                      "text": "4.5",
+                      "size": "sm",
+                      "color": "#999999",
+                      "margin": "md",
+                      "flex": 0
+                    }
+                  ],
+                  "flex": 5
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "baseline",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "Stock",
+                  "color": "#aaaaaa",
+                  "size": "sm",
+                  "flex": 1
+                },
+                {
+                  "type": "text",
+                  "text": "In Stock (12 items)",
+                  "wrap": true,
+                  "color": "#06C755",
+                  "size": "sm",
+                  "flex": 5
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "separator",
+          "margin": "lg"
+        },
+        {
+          "type": "box",
+          "layout": "vertical",
+          "margin": "lg",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "text",
+              "text": "Features:",
+              "weight": "bold",
+              "size": "sm"
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "•",
+                  "size": "sm",
+                  "flex": 0
+                },
+                {
+                  "type": "text",
+                  "text": "Industry-leading noise cancellation",
+                  "size": "sm",
+                  "wrap": true,
+                  "color": "#666666"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "•",
+                  "size": "sm",
+                  "flex": 0
+                },
+                {
+                  "type": "text",
+                  "text": "30-hour battery life",
+                  "size": "sm",
+                  "wrap": true,
+                  "color": "#666666"
+                }
+              ]
+            },
+            {
+              "type": "box",
+              "layout": "horizontal",
+              "spacing": "sm",
+              "contents": [
+                {
+                  "type": "text",
+                  "text": "•",
+                  "size": "sm",
+                  "flex": 0
+                },
+                {
+                  "type": "text",
+                  "text": "Premium sound quality",
+                  "size": "sm",
+                  "wrap": true,
+                  "color": "#666666"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "footer": {
+      "type": "box",
+      "layout": "vertical",
+      "spacing": "sm",
+      "contents": [
+        {
+          "type": "button",
+          "style": "primary",
+          "height": "sm",
+          "action": {
+            "type": "postback",
+            "label": "Add to Cart",
+            "data": "action=buy&itemId=123",
+            "displayText": "Adding to cart..."
+          }
+        },
+        {
+          "type": "button",
+          "style": "link",
+          "height": "sm",
+          "action": {
+            "type": "uri",
+            "label": "View Details",
+            "uri": "https://example.com/product/123"
+          }
+        },
+        {
+          "type": "box",
+          "layout": "horizontal",
+          "spacing": "sm",
+          "contents": [
+            {
+              "type": "button",
+              "style": "link",
+              "height": "sm",
+              "action": {
+                "type": "postback",
+                "label": "Save",
+                "data": "action=save&itemId=123"
+              }
+            },
+            {
+              "type": "button",
+              "style": "link",
+              "height": "sm",
+              "action": {
+                "type": "postback",
+                "label": "Share",
+                "data": "action=share&itemId=123"
+              }
+            }
+          ]
+        }
+      ],
+      "flex": 0
+    }
+  }
+}

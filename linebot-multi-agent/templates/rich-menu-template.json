@@ -1,0 +1,93 @@
+{
+  "size": {
+    "width": 2500,
+    "height": 1686
+  },
+  "selected": true,
+  "name": "Main Menu",
+  "chatBarText": "Menu",
+  "areas": [
+    {
+      "bounds": {
+        "x": 0,
+        "y": 0,
+        "width": 833,
+        "height": 843
+      },
+      "action": {
+        "type": "postback",
+        "label": "Shop",
+        "data": "action=menu&item=shop",
+        "displayText": "Browse Products"
+      }
+    },
+    {
+      "bounds": {
+        "x": 834,
+        "y": 0,
+        "width": 833,
+        "height": 843
+      },
+      "action": {
+        "type": "postback",
+        "label": "Cart",
+        "data": "action=menu&item=cart",
+        "displayText": "View Cart"
+      }
+    },
+    {
+      "bounds": {
+        "x": 1667,
+        "y": 0,
+        "width": 833,
+        "height": 843
+      },
+      "action": {
+        "type": "postback",
+        "label": "Account",
+        "data": "action=menu&item=account",
+        "displayText": "My Account"
+      }
+    },
+    {
+      "bounds": {
+        "x": 0,
+        "y": 843,
+        "width": 833,
+        "height": 843
+      },
+      "action": {
+        "type": "message",
+        "label": "Support",
+        "text": "I need help"
+      }
+    },
+    {
+      "bounds": {
+        "x": 834,
+        "y": 843,
+        "width": 833,
+        "height": 843
+      },
+      "action": {
+        "type": "uri",
+        "label": "Website",
+        "uri": "https://example.com"
+      }
+    },
+    {
+      "bounds": {
+        "x": 1667,
+        "y": 843,
+        "width": 833,
+        "height": 843
+      },
+      "action": {
+        "type": "richmenuswitch",
+        "label": "Settings",
+        "richMenuAliasId": "richmenu-alias-settings",
+        "data": "richmenu=settings"
+      }
+    }
+  ]
+}

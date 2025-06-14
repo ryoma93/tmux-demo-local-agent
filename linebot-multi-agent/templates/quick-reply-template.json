@@ -1,0 +1,120 @@
+{
+  "type": "text",
+  "text": "How would you like to proceed?",
+  "quickReply": {
+    "items": [
+      {
+        "type": "action",
+        "imageUrl": "https://example.com/icon-yes.png",
+        "action": {
+          "type": "postback",
+          "label": "Yes",
+          "data": "answer=yes",
+          "displayText": "Yes, please!"
+        }
+      },
+      {
+        "type": "action",
+        "imageUrl": "https://example.com/icon-no.png",
+        "action": {
+          "type": "postback",
+          "label": "No",
+          "data": "answer=no",
+          "displayText": "No, thanks"
+        }
+      },
+      {
+        "type": "action",
+        "imageUrl": "https://example.com/icon-calendar.png",
+        "action": {
+          "type": "datetimepicker",
+          "label": "Select Date",
+          "data": "action=datepicker",
+          "mode": "date",
+          "initial": "2024-01-01",
+          "max": "2025-12-31",
+          "min": "2024-01-01"
+        }
+      },
+      {
+        "type": "action",
+        "imageUrl": "https://example.com/icon-time.png",
+        "action": {
+          "type": "datetimepicker",
+          "label": "Select Time",
+          "data": "action=timepicker",
+          "mode": "time",
+          "initial": "10:00",
+          "max": "23:59",
+          "min": "00:00"
+        }
+      },
+      {
+        "type": "action",
+        "imageUrl": "https://example.com/icon-location.png",
+        "action": {
+          "type": "location",
+          "label": "Share Location"
+        }
+      },
+      {
+        "type": "action",
+        "imageUrl": "https://example.com/icon-camera.png",
+        "action": {
+          "type": "camera",
+          "label": "Take Photo"
+        }
+      },
+      {
+        "type": "action",
+        "imageUrl": "https://example.com/icon-gallery.png",
+        "action": {
+          "type": "cameraRoll",
+          "label": "Choose Photo"
+        }
+      },
+      {
+        "type": "action",
+        "action": {
+          "type": "message",
+          "label": "More Options",
+          "text": "show more options"
+        }
+      },
+      {
+        "type": "action",
+        "action": {
+          "type": "uri",
+          "label": "Visit Website",
+          "uri": "https://example.com"
+        }
+      },
+      {
+        "type": "action",
+        "action": {
+          "type": "postback",
+          "label": "Contact Support",
+          "data": "action=support",
+          "displayText": "I need help"
+        }
+      },
+      {
+        "type": "action",
+        "action": {
+          "type": "message",
+          "label": "Cancel",
+          "text": "cancel"
+        }
+      },
+      {
+        "type": "action",
+        "action": {
+          "type": "postback",
+          "label": "Back to Menu",
+          "data": "action=mainmenu",
+          "displayText": "menu"
+        }
+      }
+    ]
+  }
+}
