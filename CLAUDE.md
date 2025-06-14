@@ -146,26 +146,69 @@ Specialized for data collection, processing, and analysis with the following age
 
 ## Deployment Standards
 
-### Cloudflare Workers Deployment
-All multi-agent developed applications must be designed for Cloudflare Workers deployment:
+### LINE Bot System Deployment (Cloudflare Workers)
+LINE Bot multi-agent developed applications must be designed for Cloudflare Workers deployment:
 
-- **ARCHITECT**: Design APIs compatible with Cloudflare Workers runtime
-- **BACKEND**: Implement webhook handlers using Cloudflare Workers patterns
-- **FRONTEND**: Ensure LINE messaging components work with Workers environment
-- **TESTER**: Include Cloudflare Workers-specific testing strategies
+#### Agent Responsibilities for Cloudflare Deployment
+- **ARCHITECT**: Design APIs compatible with Cloudflare Workers runtime, plan edge computing architecture
+- **BACKEND**: Implement webhook handlers using Cloudflare Workers patterns, optimize for serverless execution
+- **FRONTEND**: Ensure LINE messaging components work with Workers environment, optimize response times
+- **TESTER**: Include Cloudflare Workers-specific testing strategies, edge case testing
+- **MONITOR**: Set up Cloudflare analytics and monitoring, track Workers performance
 
-### Required Configuration
-Each project must include:
-- `wrangler.toml` configuration file
-- Environment variables setup for LINE Bot credentials
-- Proper routing configuration for webhook endpoints
+#### Required Configuration for LINE Bot Projects
+- `wrangler.toml` configuration file with LINE Bot-specific settings
+- Environment variables setup for LINE Bot credentials (Channel Access Token, Channel Secret)
+- Proper routing configuration for webhook endpoints (`/webhook`)
 - TypeScript support for Workers runtime APIs
+- LINE Bot SDK compatibility with Workers environment
 
-### Development Workflow
-1. Initialize projects with `wrangler init`
-2. Configure `wrangler.toml` for LINE Bot requirements
-3. Use `wrangler dev` for local development
-4. Deploy with `wrangler deploy`
-5. Monitor with `wrangler tail`
+#### LINE Bot Development Workflow
+1. Initialize projects with `wrangler init linebot-project`
+2. Configure `wrangler.toml` for LINE Bot webhook requirements
+3. Set up LINE Bot credentials via `wrangler secret put`
+4. Use `wrangler dev` for local webhook testing with ngrok
+5. Deploy with `wrangler deploy`
+6. Monitor with `wrangler tail` and LINE Developers Console
 
-Reference: https://developers.cloudflare.com/workers/get-started/guide/
+### Data Pipeline System Deployment (Cloud/On-Premise)
+Data pipeline multi-agent developed systems support flexible deployment options:
+
+#### Agent Responsibilities for Data Pipeline Deployment
+- **COLLECTOR**: Design data ingestion compatible with target infrastructure, plan for scalability
+- **PROCESSOR**: Implement processing pipelines optimized for deployment environment (batch/streaming)
+- **ANALYZER**: Create analysis modules that work in distributed environments, optimize for compute resources
+- **STORAGE**: Design storage architecture for target platform (cloud/on-premise), plan backup strategies
+- **MONITOR**: Set up comprehensive monitoring for data pipeline health, performance metrics, and alerts
+
+#### Deployment Options for Data Pipeline Projects
+1. **Cloud Deployment** (AWS/GCP/Azure):
+   - Containerized deployment with Docker/Kubernetes
+   - Managed services integration (S3, BigQuery, etc.)
+   - Auto-scaling configuration
+   - Cloud-native monitoring and logging
+
+2. **On-Premise Deployment**:
+   - Local infrastructure optimization
+   - Network security configuration
+   - Resource allocation planning
+   - Custom monitoring solutions
+
+3. **Hybrid Deployment**:
+   - Multi-cloud data synchronization
+   - Edge computing integration
+   - Disaster recovery planning
+   - Cross-platform monitoring
+
+#### Data Pipeline Development Workflow
+1. Initialize projects with `./utils/pipeline-init.sh PROJECT_NAME [batch|streaming|hybrid]`
+2. Configure deployment environment in `config/pipeline.yaml`
+3. Set up environment variables in `.env` file
+4. Use Docker for containerized development and testing
+5. Deploy using platform-specific tools (kubectl, terraform, etc.)
+6. Monitor using configured monitoring stack (Prometheus, Grafana, etc.)
+
+### Reference Links
+- Cloudflare Workers: https://developers.cloudflare.com/workers/get-started/guide/
+- LINE Bot SDK: https://developers.line.biz/en/docs/messaging-api/overview/
+- Data Pipeline Best Practices: https://cloud.google.com/architecture/data-preprocessing-for-ml-with-tf-transform-pt1
