@@ -47,6 +47,23 @@ cd data-pipeline-multi-agent && ./scripts/setup.sh
 # PIPELINE_TYPE options: batch, streaming, hybrid (default: batch)
 ```
 
+### Small Business Multi-Agent System Management
+```bash
+# Start the small business planning multi-agent tmux session
+cd smallbiz-multi-agent && ./scripts/setup.sh
+
+# Send messages between business planning agents
+./scripts/agent-send.sh -f FROM_AGENT -t TO_AGENT -m "message" [-p PRIORITY]
+
+# Examples:
+./scripts/agent-send.sh -f STRATEGIST -t RESEARCHER -m "市場調査を開始してください"
+./scripts/agent-send.sh -f RESEARCHER -t MARKETER -m "ペルソナ設計用のインサイトを共有します" -p HIGH
+./scripts/agent-send.sh -f FINANCIER -t ALL -m "収益モデルの検証が完了しました" -p HIGH
+
+# Initialize a new small business project
+./utils/project-init.sh
+```
+
 ### Cloudflare Deployment with Wrangler
 ```bash
 # Install Wrangler CLI globally
@@ -79,15 +96,19 @@ tmux kill-session -t linebot-dev
 tmux attach -t data-pipeline-dev
 tmux kill-session -t data-pipeline-dev
 
+# Small Business system
+tmux attach -t smallbiz-dev
+tmux kill-session -t smallbiz-dev
+
 # Navigation within tmux
-# Ctrl-b + [0-4] - Switch between agent windows
+# Ctrl-b + [0-5] - Switch between agent windows
 # Ctrl-b + d     - Detach from session
 # Ctrl-b + w     - List all windows
 ```
 
 ## Architecture
 
-This repository contains two specialized tmux-based multi-agent systems:
+This repository contains three specialized tmux-based multi-agent systems:
 
 ### 1. LINE Bot Multi-Agent System (`linebot-multi-agent/`)
 
@@ -138,7 +159,36 @@ Specialized for data collection, processing, and analysis with the following age
 - Flexible storage solutions and optimization strategies
 - Complete project scaffolding for data pipeline projects
 
-### Inter-Agent Communication Protocol (Both Systems)
+### 3. Small Business Multi-Agent System (`smallbiz-multi-agent/`)
+
+Specialized for small business planning and strategy development with the following agent hierarchy:
+
+#### Agent Hierarchy
+- **STRATEGIST** (Window 0): Business vision, strategy planning, action plan integration
+- **RESEARCHER** (Window 1): Market research, user needs analysis, competitor analysis
+- **MARKETER** (Window 2): Persona design, SNS marketing strategy, brand positioning
+- **ENGINEER** (Window 3): Technical feasibility, architecture design, development estimation
+- **FINANCIER** (Window 4): Business model design, financial planning, revenue projections
+- **MONITOR** (Window 5): Communication logger and system monitoring
+
+#### Key Components
+- **scripts/setup.sh**: Creates tmux session with 6 business planning agent windows
+- **scripts/agent-send.sh**: Handles message routing between business planning agents
+- **instructions/[agent]/*.md**: Detailed role definitions for each business agent
+- **templates/**: Business planning templates (business model canvas, persona design, market research)
+- **utils/**: Business validation utilities, project initialization tools
+
+#### Small Business Development Focus
+- Comprehensive business model canvas creation
+- Detailed persona design and validation
+- Market research and competitive analysis frameworks
+- Technical feasibility assessment for small teams
+- Financial planning for 100万円-5億円 scale businesses
+- SNS-focused marketing strategies for modern businesses
+- Cloudflare Workers deployment optimization
+- Complete project scaffolding for small business ventures
+
+### Inter-Agent Communication Protocol (All Systems)
 - Messages are sent via `agent-send.sh` with priority levels (HIGH, MEDIUM, LOW)
 - All communications are logged to `logs/communication.log`
 - Agents can broadcast to ALL or send targeted messages
@@ -207,6 +257,31 @@ Data pipeline multi-agent developed systems support flexible deployment options:
 4. Use Docker for containerized development and testing
 5. Deploy using platform-specific tools (kubectl, terraform, etc.)
 6. Monitor using configured monitoring stack (Prometheus, Grafana, etc.)
+
+### Small Business System Deployment (Cloudflare Workers Focus)
+Small business multi-agent developed applications are optimized for Cloudflare Workers deployment:
+
+#### Agent Responsibilities for Small Business Deployment
+- **STRATEGIST**: Define deployment strategy aligned with business goals, plan scalability milestones
+- **RESEARCHER**: Validate technical assumptions about target infrastructure, assess user technical constraints
+- **MARKETER**: Ensure marketing tools and analytics work with chosen deployment platform
+- **ENGINEER**: Design architecture specifically for Cloudflare Workers, optimize for edge computing
+- **FINANCIER**: Calculate deployment costs and ROI for chosen infrastructure strategy
+
+#### Small Business Deployment Strategy
+All small business projects must include:
+- **Cloudflare Workers** as primary deployment platform for cost efficiency and global reach
+- **TypeScript/JavaScript** implementation for Workers compatibility
+- **Edge-first architecture** to minimize latency and infrastructure costs
+- **Serverless design patterns** to reduce operational overhead for small teams
+
+#### Small Business Development Workflow
+1. Initialize projects with `./utils/project-init.sh` (includes wrangler.toml setup)
+2. Configure business requirements and technical constraints
+3. Design MVP with Cloudflare Workers limitations in mind
+4. Develop using `wrangler dev` for local testing
+5. Deploy with `wrangler deploy` for staging and production
+6. Monitor using Cloudflare Analytics and custom business metrics
 
 ### Reference Links
 - Cloudflare Workers: https://developers.cloudflare.com/workers/get-started/guide/
