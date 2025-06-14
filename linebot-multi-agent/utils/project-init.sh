@@ -57,18 +57,18 @@ cat > package.json << EOF
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@line/bot-sdk": "^7.5.2",
-    "express": "^4.18.2",
-    "dotenv": "^16.0.3",
-    "axios": "^1.3.4",
-    "body-parser": "^1.20.2",
+    "@line/bot-sdk": "^10.0.0",
+    "express": "^5.1.0",
+    "dotenv": "^16.5.0",
+    "axios": "^1.9.0",
+    "body-parser": "^2.2.0",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20",
-    "eslint": "^8.35.0",
-    "jest": "^29.4.3",
-    "supertest": "^6.3.3"
+    "nodemon": "^3.1.10",
+    "eslint": "^9.29.0",
+    "jest": "^30.0.0",
+    "supertest": "^7.1.1"
   }
 }
 EOF
