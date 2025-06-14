@@ -29,6 +29,28 @@ cd linebot-multi-agent && ./scripts/setup.sh
 ./utils/project-init.sh
 ```
 
+### Cloudflare Deployment with Wrangler
+```bash
+# Install Wrangler CLI globally
+npm install -g wrangler
+
+# Login to Cloudflare
+wrangler login
+
+# Initialize Cloudflare Worker project
+wrangler init my-linebot-worker
+
+# Deploy to Cloudflare
+wrangler deploy
+
+# View deployment logs
+wrangler tail
+
+# Manage secrets
+wrangler secret put SECRET_NAME
+wrangler secret list
+```
+
 ### Tmux Session Control
 ```bash
 # Attach to existing session
@@ -75,3 +97,29 @@ The system is specifically designed for LINE Bot development with:
 - Project initialization script that creates a complete LINE Bot structure
 
 When working on LINE Bot features, reference the templates in `templates/` and utilities in `utils/` for LINE-specific implementations.
+
+## Deployment Standards
+
+### Cloudflare Workers Deployment
+All multi-agent developed applications must be designed for Cloudflare Workers deployment:
+
+- **ARCHITECT**: Design APIs compatible with Cloudflare Workers runtime
+- **BACKEND**: Implement webhook handlers using Cloudflare Workers patterns
+- **FRONTEND**: Ensure LINE messaging components work with Workers environment
+- **TESTER**: Include Cloudflare Workers-specific testing strategies
+
+### Required Configuration
+Each project must include:
+- `wrangler.toml` configuration file
+- Environment variables setup for LINE Bot credentials
+- Proper routing configuration for webhook endpoints
+- TypeScript support for Workers runtime APIs
+
+### Development Workflow
+1. Initialize projects with `wrangler init`
+2. Configure `wrangler.toml` for LINE Bot requirements
+3. Use `wrangler dev` for local development
+4. Deploy with `wrangler deploy`
+5. Monitor with `wrangler tail`
+
+Reference: https://developers.cloudflare.com/workers/get-started/guide/
