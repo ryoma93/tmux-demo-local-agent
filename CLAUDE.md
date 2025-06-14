@@ -13,9 +13,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Commands
 
-### Multi-Agent System Management
+### LINE Bot Multi-Agent System Management
 ```bash
-# Start the multi-agent tmux session
+# Start the LINE Bot multi-agent tmux session
 cd linebot-multi-agent && ./scripts/setup.sh
 
 # Send messages between agents
@@ -27,6 +27,24 @@ cd linebot-multi-agent && ./scripts/setup.sh
 
 # Initialize a new LINE Bot project
 ./utils/project-init.sh
+```
+
+### Data Pipeline Multi-Agent System Management
+```bash
+# Start the data pipeline multi-agent tmux session
+cd data-pipeline-multi-agent && ./scripts/setup.sh
+
+# Send messages between data pipeline agents
+./scripts/agent-send.sh -f FROM_AGENT -t TO_AGENT -m "message" [-p PRIORITY]
+
+# Examples:
+./scripts/agent-send.sh -f COLLECTOR -t PROCESSOR -m "Raw data collection complete, ready for processing"
+./scripts/agent-send.sh -f PROCESSOR -t ALL -m "Data cleaning pipeline updated" -p HIGH
+./scripts/agent-send.sh -f ANALYZER -t STORAGE -m "Analysis complete, recommend index optimization"
+
+# Initialize a new data pipeline project
+./utils/pipeline-init.sh PROJECT_NAME [PIPELINE_TYPE]
+# PIPELINE_TYPE options: batch, streaming, hybrid (default: batch)
 ```
 
 ### Cloudflare Deployment with Wrangler
@@ -53,11 +71,13 @@ wrangler secret list
 
 ### Tmux Session Control
 ```bash
-# Attach to existing session
+# LINE Bot system
 tmux attach -t linebot-dev
-
-# Kill session
 tmux kill-session -t linebot-dev
+
+# Data Pipeline system
+tmux attach -t data-pipeline-dev
+tmux kill-session -t data-pipeline-dev
 
 # Navigation within tmux
 # Ctrl-b + [0-4] - Switch between agent windows
@@ -67,36 +87,62 @@ tmux kill-session -t linebot-dev
 
 ## Architecture
 
-This is a tmux-based multi-agent system for LINE Bot development. The architecture consists of:
+This repository contains two specialized tmux-based multi-agent systems:
 
-### Agent Hierarchy
+### 1. LINE Bot Multi-Agent System (`linebot-multi-agent/`)
+
+Specialized for LINE Bot development with the following agent hierarchy:
+
+#### Agent Hierarchy
 - **ARCHITECT** (Window 0): System design, API specifications, database schemas
 - **BACKEND** (Window 1): Webhook implementation, business logic, server-side code
 - **FRONTEND** (Window 2): LINE messaging UI (Rich Menus, Flex Messages, Quick Replies)
 - **TESTER** (Window 3): Testing strategies, quality assurance
 - **MONITOR** (Window 4): Communication logger (watches logs/communication.log)
 
-### Inter-Agent Communication Protocol
-- Messages are sent via `agent-send.sh` with priority levels (HIGH, MEDIUM, LOW)
-- All communications are logged to `logs/communication.log`
-- Agents can broadcast to ALL or send targeted messages
-- Messages appear in tmux windows with timestamps and formatting
-
-### Key Components
+#### Key Components
 - **scripts/setup.sh**: Creates tmux session with 5 windows, initializes each agent
 - **scripts/agent-send.sh**: Handles message routing and logging between agents
 - **instructions/[agent]/*.md**: Role definitions for each agent type
 - **templates/**: LINE Bot code templates (webhook handlers, message formats)
 - **utils/**: Development utilities (validators, message builders, project init)
 
-### LINE Bot Development Focus
-The system is specifically designed for LINE Bot development with:
+#### LINE Bot Development Focus
 - Pre-built templates for Flex Messages, Rich Menus, Quick Replies
 - Webhook signature validation utilities
 - Message builder helper functions
 - Project initialization script that creates a complete LINE Bot structure
 
-When working on LINE Bot features, reference the templates in `templates/` and utilities in `utils/` for LINE-specific implementations.
+### 2. Data Pipeline Multi-Agent System (`data-pipeline-multi-agent/`)
+
+Specialized for data collection, processing, and analysis with the following agent hierarchy:
+
+#### Agent Hierarchy
+- **COLLECTOR** (Window 0): Data collection from APIs, files, databases, streaming sources
+- **PROCESSOR** (Window 1): Data cleaning, transformation, standardization
+- **ANALYZER** (Window 2): Statistical analysis, quality assessment, anomaly detection
+- **STORAGE** (Window 3): Data storage design, optimization, management
+- **MONITOR** (Window 4): Communication logger and system monitoring
+
+#### Key Components
+- **scripts/setup.sh**: Creates tmux session with 5 data pipeline agent windows
+- **scripts/agent-send.sh**: Handles message routing between data pipeline agents
+- **instructions/[agent]/*.md**: Detailed role definitions for each data agent
+- **templates/**: Data pipeline templates (API collectors, data processors)
+- **utils/**: Data validation utilities, pipeline initialization tools
+
+#### Data Pipeline Focus
+- Comprehensive data collection from multiple source types
+- Advanced data cleaning and transformation capabilities
+- Statistical analysis and data quality assessment
+- Flexible storage solutions and optimization strategies
+- Complete project scaffolding for data pipeline projects
+
+### Inter-Agent Communication Protocol (Both Systems)
+- Messages are sent via `agent-send.sh` with priority levels (HIGH, MEDIUM, LOW)
+- All communications are logged to `logs/communication.log`
+- Agents can broadcast to ALL or send targeted messages
+- Messages appear in tmux windows with timestamps and formatting
 
 ## Deployment Standards
 
